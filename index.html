@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookShop</title>
+    <link rel="stylesheet" href="css/book-shop.css">
+</head>
+
+<body>
+    <h1>Book Shop</h1>
+
+    <section class="new-book">
+        <input type="text" placeholder="Add a book">
+        <button onclick="onAddBook()">Add</button>
+    </section>
+
+    <ul>
+        <li>
+            <span>Harry Potter</span>
+            <button onclick="onRemoveBook('t101')">&times;</button onclick="onRemoveBook('t101')">
+        </li>
+        <li>
+            <span class="done">Harry Potter</span>
+            <button onclick="onRemoveBook('t101')">&times;</button onclick="onRemoveBook('t101')">
+        </li>
+        <li>
+            <span>Harry Potter</span>
+            <button onclick="onRemoveBook('t101')">&times;</button onclick="onRemoveBook('t101')">
+        </li>
+    </ul>
+
+    <script src="js/book-shop.js"></script>
+</body>
+
+</html>
