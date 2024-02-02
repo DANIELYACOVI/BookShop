@@ -1,18 +1,14 @@
 'use strict'
 
-var gBooks = [
-    { id: 'bg4J78', title: 'The adventures of Lori Ipsi', price: 120, imgUrl: 'lori-ipsi.jpg' },
-    { id: 'bg4J77', title: 'World Atlas', price: 300, imgUrl: 'lori-ipsi.jpg' },
-    { id: 'bg4J76', title: 'Zorba the Greek', price: 87, imgUrl: 'lori-ipsi.jpg' }
-]
-
 function onInit() {
     renderBooks()
 }
 
 function renderBooks() {
     const elBooks = document.querySelector('.book-list')
-    const strHtmls = gBooks.map(book => `<tr>
+    const books = getBooks()
+    
+    const strHtmls = books.map(book => `<tr>
     <td>${book.title}</td>
     <td>${book.price}</td>
     <td>
@@ -26,8 +22,7 @@ function renderBooks() {
 }
 
 function onRemoveBook(bookId) {
-    const idx = gBooks.findIndex(book => book.id === bookId)
-    gBooks.splice(idx, 1)
+    removeBook(bookId)
     renderBooks()
 }
 
