@@ -12,31 +12,34 @@
     <h1>Book Shop</h1>
     <div class="container">
 
-    <section class="new-book">
+        <section class="new-book">
             <input type="text" placeholder="Add a book">
             <button onclick="onAddBook()">Add</button>
-    </section>
+        </section>
 
-    <table class="book-table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Price</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody class="book-list"></tbody>
-    </table>
+        <table class="book-table">
+            <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Price</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody class="book-list"></tbody>
+        </table>
 
-    <form  onsubmit="onCloseBookDetails(event, this)" class="book-details hidden">
-        <h2>Book: <span></span></h2>
-        <pre></pre>
-        <button>&times;</button>
-    </form>
+        <dialog class="book-details">
+            <form method="dialog">
+                <h2>Book: <span></span></h2>
+                <pre></pre>
+                <button class="close-details">&times;</button>
+            </form>
+        </dialog>
 
     </div>
 
     <script src="js/services/book.service.js"></script>
     <script src="js/book-shop.controller.js"></script>
 </body>
+
 </html>

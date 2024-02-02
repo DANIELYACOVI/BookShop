@@ -9,14 +9,16 @@ function renderBooks() {
     const books = getBooks()
 
     const strHtmls = books.map(book => `<tr>
-    <td>${book.title}</td>
+    <td>
+        <img src="${book.imgUrl}" alt="Book Cover" style="max-width: 50px; max-height: 50px;">
+        ${book.title}
+    </td>
     <td>${book.price}</td>
     <td>
         <button class="read" onclick="onReadBook('${book.id}')">Read</button>
         <button class="update">Update</button>
         <button class="delete" onclick="onRemoveBook('${book.id}')">Delete</button>
     </td>`)
-
 
     elBooks.innerHTML = strHtmls.join('')
 }
@@ -26,6 +28,7 @@ function onReadBook(bookId) {
     const elModal = document.querySelector('.book-details')
     const elTxt = elModal.querySelector('h2 span')
     const elPre = elModal.querySelector('pre')
+    const elImg = document.createElement('img')
 
     const book = readBook(bookId)
     const bookStr = JSON.stringify(book, null, 4)
@@ -34,13 +37,13 @@ function onReadBook(bookId) {
     elTxt.innerHTML = book.title
     elPre.innerText = bookStr
 
-    elModal.classList.remove('hidden')
+    elModal.showModal()
 }
 
-function onCloseBookDetails(ev, elModal) {
-    ev.preventDefault()
-    elModal.classList.add('hidden')
-}
+// function onCloseBookDetails(ev, elModal) {
+//     ev.preventDefault()
+//     elModal.classList.add('hidden')
+// }
 
 
 function onRemoveBook(bookId) {

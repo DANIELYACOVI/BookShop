@@ -1,8 +1,8 @@
 'use strict'
 
 var gBooks = [
-    { id: 'bg4J78', title: 'The adventures of Lori Ipsi', price: 120, imgUrl: 'lori-ipsi.jpg' },
-    { id: 'bg4J77', title: 'World Atlas', price: 300, imgUrl: 'lori-ipsi.jpg' },
+    { id: 'bg4J78', title: 'האלכימאי', price: 120, imgUrl: 'image/alchemist_master.jpg' },
+    { id: 'bg4J77', title: 'הנזיר שמכר את הפרארי שלו', price: 300, imgUrl: 'image/images.jpeg' },
     { id: 'bg4J76', title: 'Zorba the Greek', price: 87, imgUrl: 'lori-ipsi.jpg' }
 ]
 
