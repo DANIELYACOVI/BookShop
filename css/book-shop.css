@@ -38,6 +38,7 @@
     padding: 5px 10px;
     cursor: pointer;
 }
+
 .update{
     background-color: rgb(237, 205, 46);
     border: none;
@@ -45,10 +46,15 @@
     padding: 5px 10px;
     cursor: pointer;
 }
+
 .delete{
     background-color: #ff6961;
     border: none;
     border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
+}
+
+.hidden{
+    display: none;
 }

@@ -27,6 +27,13 @@
         </thead>
         <tbody class="book-list"></tbody>
     </table>
+
+    <form  onsubmit="onCloseBookDetails(event, this)" class="book-details hidden">
+        <h2>Book: <span></span></h2>
+        <pre></pre>
+        <button>&times;</button>
+    </form>
+
     </div>
 
     <script src="js/services/book.service.js"></script>
