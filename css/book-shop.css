@@ -2,6 +2,53 @@
     box-sizing: border-box;
 }
 
+.container{
+    max-width: 600px;
+}
+
 .done{
     text-decoration: line-through;
+}
+
+.book-table{
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.book-table th,
+.book-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.book-table th{
+    background-color: #f2f2f2;
+}
+
+.book-table tbody tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+.read{
+    background-color: lightblue;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.update{
+    background-color: rgb(237, 205, 46);
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.delete{
+    background-color: #ff6961;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
 }
