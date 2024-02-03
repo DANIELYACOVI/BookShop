@@ -69,3 +69,7 @@
 .close-details:hover {
     color: black;
 }
+
+.add{
+    cursor: pointer;
+}

@@ -9,14 +9,11 @@ function renderBooks() {
     const books = getBooks()
 
     const strHtmls = books.map(book => `<tr>
-    <td>
-        <img src="${book.imgUrl}" alt="Book Cover" style="max-width: 50px; max-height: 50px;">
-        ${book.title}
-    </td>
+    <td>${book.title}</td>
     <td>${book.price}</td>
     <td>
         <button class="read" onclick="onReadBook('${book.id}')">Read</button>
-        <button class="update">Update</button>
+        <button class="update" onclick="onUpdateBook('${book.id}')">Update</button>
         <button class="delete" onclick="onRemoveBook('${book.id}')">Delete</button>
     </td>`)
 
@@ -40,11 +37,12 @@ function onReadBook(bookId) {
     elModal.showModal()
 }
 
-// function onCloseBookDetails(ev, elModal) {
-//     ev.preventDefault()
-//     elModal.classList.add('hidden')
-// }
+function onUpdateBook(bookId){
+    const newPrice = prompt('Enter the new price:')
 
+    updatePrice(bookId, newPrice)
+    renderBooks()
+}
 
 function onRemoveBook(bookId) {
     removeBook(bookId)
