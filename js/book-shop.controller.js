@@ -25,14 +25,19 @@ function onReadBook(bookId) {
     const elModal = document.querySelector('.book-details')
     const elTxt = elModal.querySelector('h2 span')
     const elPre = elModal.querySelector('pre')
-    const elImg = document.createElement('img')
 
     const book = readBook(bookId)
-    const bookStr = JSON.stringify(book, null, 4)
+    // const bookStr = JSON.stringify(book, null, 4)
     // console.log('bookStr:', bookStr)
 
+    const bookDetailsHTML = `
+        <h2 style="font-family: Arial;">${book.title}</h2>
+        <p style="font-family: Arial;"><strong>Price:</strong> ${book.price}</p>
+        <img src="${book.imgUrl}" alt="${book.title}" style="width: 200px; height: auto;">
+    `
+
     elTxt.innerHTML = book.title
-    elPre.innerText = bookStr
+    elPre.innerHTML = bookDetailsHTML
 
     elModal.showModal()
 }

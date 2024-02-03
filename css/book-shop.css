@@ -73,3 +73,8 @@
 .add{
     cursor: pointer;
 }
+
+dialog{
+    border: lightgreen;
+    border-radius: 8px;
+}
