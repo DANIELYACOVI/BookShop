@@ -1,12 +1,14 @@
 'use strict'
 
+var gFilterBy = ''
+
 function onInit() {
     renderBooks()
 }
 
 function renderBooks() {
     const elBooks = document.querySelector('.book-list')
-    const books = getBooks()
+    const books = getBooks(gFilterBy)
 
     const strHtmls = books.map(book => `<tr>
     <td>${book.title}</td>
@@ -31,10 +33,9 @@ function onReadBook(bookId) {
     // console.log('bookStr:', bookStr)
 
     const bookDetailsHTML = `
-        <h2 style="font-family: Arial;">${book.title}</h2>
         <p style="font-family: Arial;"><strong>Price:</strong> ${book.price}</p>
-        <img src="${book.imgUrl}" alt="${book.title}" style="width: 200px; height: auto;">
-    `
+        <img src="${book.imgUrl}" style="width: 150px; height: 150px; display: block; margin: 0 auto;">
+        `
 
     elTxt.innerHTML = book.title
     elPre.innerHTML = bookDetailsHTML
@@ -42,7 +43,7 @@ function onReadBook(bookId) {
     elModal.showModal()
 }
 
-function onUpdateBook(bookId){
+function onUpdateBook(bookId) {
     const newPrice = prompt('Enter the new price:')
 
     updatePrice(bookId, newPrice)
@@ -60,16 +61,14 @@ function onAddBook() {
     const price = prompt('Enter the price:')
 
     if (title && price) {
-        const book = {
-            id: 'bg' + Date.now() % 1000,
-            title: title,
-            price: price,
-            imgUrl: 'lori-ipsi.jpg'
-        }
+        const book = _createBook(title, price)
+
         gBooks.unshift(book)
         elInput.value = ''
         renderBooks()
     } else {
         alert('Invalid input. Please enter a valid title and price.')
     }
+
+    _saveBooks()
 }

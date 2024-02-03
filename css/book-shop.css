@@ -2,18 +2,54 @@
     box-sizing: border-box;
 }
 
-.container{
-    max-width: 600px;
+h1 {
+    --s: 0.1em;
+    --c: #2c4bff;
+
+    color: #0000;
+    padding-bottom: var(--s);
+    background:
+        linear-gradient(90deg, var(--c) 50%, #000 0) calc(100% - var(--_p, 0%))/200% 100%,
+        linear-gradient(var(--c) 0 0) 0% 100%/var(--_p, 0%) var(--s) no-repeat;
+    -webkit-background-clip: text, padding-box;
+    background-clip: text, padding-box;
+    transition: 0.5s;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
-.done{
+h1:hover {
+    --_p: 100%
+}
+
+body {
+    height: 100vh;
+    margin: 0;
+    display: grid;
+    padding-top: 20px;
+}
+
+.container {
+    max-width: 600px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 80px;
+    padding-left: 20px;
+}
+
+.done {
     text-decoration: line-through;
 }
 
-.book-table{
+.book-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
+    align-self: flex-start;
 }
 
 .book-table th,
@@ -23,7 +59,7 @@
     text-align: left;
 }
 
-.book-table th{
+.book-table th {
     background-color: #f2f2f2;
 }
 
@@ -31,7 +67,7 @@
     background-color: #f9f9f9;
 }
 
-.read{
+.read {
     background-color: lightblue;
     border: none;
     border-radius: 5px;
@@ -39,7 +75,7 @@
     cursor: pointer;
 }
 
-.update{
+.update {
     background-color: rgb(237, 205, 46);
     border: none;
     border-radius: 5px;
@@ -47,7 +83,7 @@
     cursor: pointer;
 }
 
-.delete{
+.delete {
     background-color: #ff6961;
     border: none;
     border-radius: 5px;
@@ -70,11 +106,15 @@
     color: black;
 }
 
-.add{
+.add {
     cursor: pointer;
 }
 
-dialog{
+dialog {
     border: lightgreen;
     border-radius: 8px;
+    width: auto;
+    max-width: 40%;
+    max-height: 60%;
+    overflow: auto;
 }

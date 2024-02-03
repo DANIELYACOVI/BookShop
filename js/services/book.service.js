@@ -1,28 +1,55 @@
 'use strict'
 
-var gBooks = [
-    { id: 'bg4J78', title: 'האלכימאי', price: 120, imgUrl: 'image/alchemist_master.jpg' },
-    { id: 'bg4J77', title: 'הנזיר שמכר את הפרארי שלו', price: 300, imgUrl: 'image/images.jpeg' },
-    { id: 'bg4J76', title: 'Zorba the Greek', price: 87, imgUrl: 'lori-ipsi.jpg' }
-]
+var gBooks
+_createBooks()
 
-function getBooks(){
+function getBooks(filterBy) {
     return gBooks
 }
 
-function readBook(bookId){
+function readBook(bookId) {
     const book = gBooks.find(book => book.id === bookId)
     return book
 }
 
-function updatePrice(bookId, newPrice){
+function updatePrice(bookId, newPrice) {
     const book = gBooks.find(book => book.id === bookId)
-    if (book){
+    if (book) {
         book.price = newPrice
     }
 }
 
-function removeBook(bookId){
+function removeBook(bookId) {
     const idx = gBooks.findIndex(book => book.id === bookId)
     gBooks.splice(idx, 1)
+
+    _saveBooks()
+}
+
+function _saveBooks() {
+    saveToStorage('bookDB', gBooks)
+}
+
+
+// Private functions
+
+function _createBooks() {
+    gBooks = loadFromStorage('bookDB')
+    if (!gBooks || gBooks.length === 0){
+        gBooks = [
+            _createBook('האלכימאי', 100),
+            _createBook('הנזיר שמכר את הפרארי שלו', 200),
+            _createBook('Zorba the Greek', 300),
+        ]
+        _saveBooks()
+    }
+}
+
+function _createBook(title, price) {
+    return {
+        id: makeId(),
+        title: title,
+        price: price,
+        imgUrl: 'lori-ipsi.jpg'
+    }
 }
