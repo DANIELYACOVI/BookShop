@@ -17,6 +17,7 @@ function updatePrice(bookId, newPrice) {
     if (book) {
         book.price = newPrice
     }
+    _saveBooks()
 }
 
 function removeBook(bookId) {
@@ -25,11 +26,6 @@ function removeBook(bookId) {
 
     _saveBooks()
 }
-
-function _saveBooks() {
-    saveToStorage('bookDB', gBooks)
-}
-
 
 // Private functions
 
@@ -52,4 +48,8 @@ function _createBook(title, price) {
         price: price,
         imgUrl: 'lori-ipsi.jpg'
     }
+}
+
+function _saveBooks() {
+    saveToStorage('bookDB', gBooks)
 }

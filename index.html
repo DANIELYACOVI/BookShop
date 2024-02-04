@@ -20,10 +20,20 @@
             </select>
         </section>
 
-        <section class="new-book">
-            <input type="text" placeholder="Add a book">
-            <button class="add" onclick="onAddBook()">Add</button>
-        </section>
+        <form onsubmit="onAddBook(event)" class="new-book">
+            <button class="add" >Add</button>
+        </form>
+
+        <dialog class="add-book-dialog">
+            <form id="newBookForm" onsubmit="onConfirmAddBook(event)">
+                <label for="newBookTitle">Title:</label>
+                <input type="text" id="newBookTitle" required>
+                <label for="newBookPrice">Price:</label>
+                <input type="number" id="newBookPrice" required>
+                <button type="submit" class="add">Add</button>
+                <button type="button" class="cancel" onclick="onCancelAddBook()">Cancel</button>
+            </form>
+        </dialog>
 
         <table class="book-table">
             <thead>
@@ -44,6 +54,10 @@
             </form>
         </dialog>
     </div>
+
+    <dialog class="success-dialog">
+        <p class="success-message"></p>
+    </dialog>
 
     <script src="js/services/util.service.js"></script>
     <script src="js/services/storage.service.js"></script>

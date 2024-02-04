@@ -110,11 +110,22 @@ body {
     cursor: pointer;
 }
 
-dialog {
-    border: lightgreen;
+.book-details {
+    border: lightgrey;
     border-radius: 8px;
     width: auto;
     max-width: 40%;
     max-height: 60%;
     overflow: auto;
+}
+
+.success-dialog{
+    border: lightgrey;
+    border-radius: 8px;
+}
+
+.add-book-dialog {
+    border: 2px solid lightslategray;
+    border-radius: 8px;
+    padding: 30px;
 }

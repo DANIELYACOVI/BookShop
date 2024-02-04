@@ -36,39 +36,73 @@ function onReadBook(bookId) {
         <p style="font-family: Arial;"><strong>Price:</strong> ${book.price}</p>
         <img src="${book.imgUrl}" style="width: 150px; height: 150px; display: block; margin: 0 auto;">
         `
-
     elTxt.innerHTML = book.title
     elPre.innerHTML = bookDetailsHTML
 
     elModal.showModal()
 }
 
+function onAddBook(ev) {
+    ev.preventDefault()
+
+    const addBookDialog = document.querySelector('.add-book-dialog')
+    addBookDialog.showModal()
+
+    renderBooks()
+}
+
+function onConfirmAddBook(event) {
+    event.preventDefault()
+
+    const titleInput = document.getElementById('newBookTitle')
+    const priceInput = document.getElementById('newBookPrice')
+
+    const title = titleInput.value
+    const price = +priceInput.value
+
+    if (title && price) {
+        const book = _createBook(title, price)
+        gBooks.unshift(book)
+        titleInput.value = ''
+        priceInput.value = ''
+        renderBooks()
+        showSuccessMessage('Book added successfully!')
+        _saveBooks()
+
+        document.querySelector('.add-book-dialog').close()
+    } else {
+        alert('Invalid input. Please enter a valid title and price.')
+    }
+}
+
+function onCancelAddBook() {
+    document.querySelector('.add-book-dialog').close()
+}
+
 function onUpdateBook(bookId) {
-    const newPrice = prompt('Enter the new price:')
+    const newPrice = +prompt('Enter the new price:')
 
     updatePrice(bookId, newPrice)
     renderBooks()
+
+    showSuccessMessage('Book updated successfully!')
 }
 
 function onRemoveBook(bookId) {
     removeBook(bookId)
     renderBooks()
+
+    showSuccessMessage('Book deleted successfully!')
 }
 
-function onAddBook() {
-    const elInput = document.querySelector('.new-book input')
-    const title = elInput.value
-    const price = prompt('Enter the price:')
+function showSuccessMessage(message) {
+    const successDialog = document.querySelector('.success-dialog')
+    const successMessage = successDialog.querySelector('.success-message')
 
-    if (title && price) {
-        const book = _createBook(title, price)
+    successMessage.textContent = message
+    successDialog.showModal()
 
-        gBooks.unshift(book)
-        elInput.value = ''
-        renderBooks()
-    } else {
-        alert('Invalid input. Please enter a valid title and price.')
-    }
-
-    _saveBooks()
+    setTimeout(() => {
+        successDialog.close()
+    }, 2000)
 }
