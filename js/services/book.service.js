@@ -33,20 +33,21 @@ function _createBooks() {
     gBooks = loadFromStorage('bookDB')
     if (!gBooks || gBooks.length === 0){
         gBooks = [
-            _createBook('האלכימאי', 100),
-            _createBook('הנזיר שמכר את הפרארי שלו', 200),
-            _createBook('Zorba the Greek', 300),
+            _createBook('האלכימאי', 100, 'image/alchemist_master.jpg'),
+            _createBook('הנזיר שמכר את הפרארי שלו', 200, 'image/images.jpeg'),
+            _createBook('Zorba the Greek', 300, 'image/images.jpg'),
         ]
         _saveBooks()
     }
 }
 
-function _createBook(title, price) {
+function _createBook(title, price, imgUrl, description) {
     return {
         id: makeId(),
-        title: title,
-        price: price,
-        imgUrl: 'lori-ipsi.jpg'
+        title,
+        price,
+        imgUrl,
+        description
     }
 }
 

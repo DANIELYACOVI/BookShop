@@ -12,7 +12,7 @@ function renderBooks() {
 
     const strHtmls = books.map(book => `<tr>
     <td>${book.title}</td>
-    <td>${book.price}</td>
+    <td>$${book.price}</td>
     <td>
         <button class="read" onclick="onReadBook('${book.id}')">Read</button>
         <button class="update" onclick="onUpdateBook('${book.id}')">Update</button>
