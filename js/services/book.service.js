@@ -3,8 +3,14 @@
 var gBooks
 _createBooks()
 
-function getBooks(filterBy) {
-    return gBooks
+function getBooks(searchTerm) {
+    var filteredBooks = gBooks
+
+    if (searchTerm) {
+        filteredBooks = filteredBooks.filter(book => book.title.toLowerCase().includes(searchTerm))
+    }
+
+    return filteredBooks
 }
 
 function readBook(bookId) {
@@ -42,19 +48,20 @@ function _createBooks() {
         gBooks = [
             _createBook('האלכימאי', 100, 'image/alchemist_master.jpg'),
             _createBook('הנזיר שמכר את הפרארי שלו', 200, 'image/images.jpeg'),
-            _createBook('Zorba the Greek', 300, 'image/images.jpg'),
+            _createBook('Zorba the Greek', 300),
         ]
         _saveBooks()
     }
 }
 
-function _createBook(title, price, imgUrl, description) {
+function _createBook(title, price, imgUrl = 'image/imagescopy.jpg', description) {
     return {
         id: makeId(),
         title,
         price,
         imgUrl,
-        description
+        description,
+        // status: 'Active'
     }
 }
 

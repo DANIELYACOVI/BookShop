@@ -3,12 +3,13 @@
 var gFilterBy = ''
 
 function onInit() {
+    gFilterBy = ''
     renderBooks()
 }
 
-function renderBooks() {
+function renderBooks(searchTerm = '') {
     const elBooks = document.querySelector('.book-list')
-    const books = getBooks(gFilterBy)
+    const books = getBooks(searchTerm)
 
     const strHtmls = books.map(book => `<tr>
     <td>${book.title}</td>
@@ -54,19 +55,21 @@ function onAddBook(ev) {
 
     console.log(price, title);
 
-    if(title&&price){
+    if (title && price) {
         addBook(title, price)
     }
-// 
+    // 
     // send to service for save
 
     titleInput.value = ''
     priceInput.value = ''
-    
+
+    document.querySelector('.add-book-dialog').close()
+
     renderBooks()
 
 }
-function openModalBySelector(selector){
+function openModalBySelector(selector) {
     const addBookDialog = document.querySelector(selector)
     addBookDialog.showModal()
 }
@@ -125,4 +128,18 @@ function showSuccessMessage(message) {
     setTimeout(() => {
         successDialog.close()
     }, 2000)
+}
+
+function onSetFilterBy(elSelect) {
+    gFilterBy = elSelect.value
+    renderBooks()
+}
+
+function onSearch() {
+    const searchInput = document.getElementById('searchInput')
+    const searchTerm = searchInput.value.toLowerCase()
+    
+    gFilterBy = ''
+    
+    renderBooks(searchTerm)
 }

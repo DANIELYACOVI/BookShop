@@ -20,10 +20,11 @@
             </select>
         </section>
 
+        <section class="search">
+            <input type="text" id="searchInput" placeholder="Search by title" oninput="onSearch()">
+        </section>
 
-        <button class="add-book" onclick="openModalBySelector('.add-book-dialog')"> &plus; Add a book</button>
-        
-  
+        <button class="add-book" onclick="openModalBySelector('.add-book-dialog')"> &plus; Add a book</button>  
 
         <dialog class="add-book-dialog">
             <form id="newBookForm" onsubmit="onAddBook(event)">
