@@ -20,12 +20,13 @@
             </select>
         </section>
 
-        <form onsubmit="onAddBook(event)" class="new-book">
-            <button class="add-book"> &plus; Add a book</button>
-        </form>
+
+        <button class="add-book" onclick="openModalBySelector('.add-book-dialog')"> &plus; Add a book</button>
+        
+  
 
         <dialog class="add-book-dialog">
-            <form id="newBookForm" onsubmit="onConfirmAddBook(event)">
+            <form id="newBookForm" onsubmit="onAddBook(event)">
                 <label for="newBookTitle">Title:</label>
                 <input type="text" id="newBookTitle" required>
                 <label for="newBookPrice">Price:</label>

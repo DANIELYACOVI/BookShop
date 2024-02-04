@@ -44,11 +44,31 @@ function onReadBook(bookId) {
 
 function onAddBook(ev) {
     ev.preventDefault()
+    // inputs value
 
-    const addBookDialog = document.querySelector('.add-book-dialog')
-    addBookDialog.showModal()
+    const titleInput = document.getElementById('newBookTitle')
+    const priceInput = document.getElementById('newBookPrice')
 
+    const title = titleInput.value
+    const price = +priceInput.value
+
+    console.log(price, title);
+
+    if(title&&price){
+        addBook(title, price)
+    }
+// 
+    // send to service for save
+
+    titleInput.value = ''
+    priceInput.value = ''
+    
     renderBooks()
+
+}
+function openModalBySelector(selector){
+    const addBookDialog = document.querySelector(selector)
+    addBookDialog.showModal()
 }
 
 function onConfirmAddBook(event) {

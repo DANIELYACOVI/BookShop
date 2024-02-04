@@ -23,8 +23,15 @@ function updatePrice(bookId, newPrice) {
 function removeBook(bookId) {
     const idx = gBooks.findIndex(book => book.id === bookId)
     gBooks.splice(idx, 1)
-
+    
     _saveBooks()
+}
+
+function addBook(title, price){
+    const book = _createBook(title, price)
+    gBooks.unshift(book)
+    _saveBooks()
+    // save 
 }
 
 // Private functions
