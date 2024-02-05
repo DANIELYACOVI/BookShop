@@ -21,6 +21,22 @@ function renderBooks(searchTerm = '') {
     </td>`)
 
     elBooks.innerHTML = strHtmls.join('')
+
+    updateFooterStatistics(books)
+}
+
+function updateFooterStatistics(books) {
+    const expensiveBooksCount = books.filter(book => book.price > 200).length
+    const averageBooksCount = books.filter(book => book.price >= 80 && book.price <= 200).length
+    const cheapBooksCount = books.filter(book => book.price < 80).length
+
+    const expensiveBooksSpan = document.querySelector('.expensive-books')
+    const averageBooksSpan = document.querySelector('.average-books')
+    const cheapBooksSpan = document.querySelector('.cheap-books')
+
+    expensiveBooksSpan.innerHTML = expensiveBooksCount
+    averageBooksSpan.innerHTML = averageBooksCount
+    cheapBooksSpan.innerHTML = cheapBooksCount
 }
 
 function onReadBook(bookId) {
@@ -35,7 +51,7 @@ function onReadBook(bookId) {
 
     const bookDetailsHTML = `
         <p style="font-family: Arial;"><strong>Price:</strong> ${book.price}</p>
-        <img src="${book.imgUrl}" style="width: 150px; height: 150px; display: block; margin: 0 auto;">
+        <img src="${book.imgUrl}">
         `
     elTxt.innerHTML = book.title
     elPre.innerHTML = bookDetailsHTML
@@ -58,7 +74,7 @@ function onAddBook(ev) {
     if (title && price) {
         addBook(title, price)
     }
-    // 
+    
     // send to service for save
 
     titleInput.value = ''
@@ -122,7 +138,7 @@ function showSuccessMessage(message) {
     const successDialog = document.querySelector('.success-dialog')
     const successMessage = successDialog.querySelector('.success-message')
 
-    successMessage.textContent = message
+    successMessage.innerHTML = message
     successDialog.showModal()
 
     setTimeout(() => {

@@ -20,11 +20,13 @@
             </select>
         </section>
 
-        <section class="search">
-            <input type="text" id="searchInput" placeholder="Search by title" oninput="onSearch()">
-        </section>
+        <section class="top-bar">
+            <section class="search">
+                <input type="text" id="searchInput" placeholder="Search by title" oninput="onSearch()">
+            </section>
 
-        <button class="add-book" onclick="openModalBySelector('.add-book-dialog')"> &plus; Add a book</button>  
+            <button class="add-book" onclick="openModalBySelector('.add-book-dialog')"> &plus; Add a book</button>
+        </section>
 
         <dialog class="add-book-dialog">
             <form id="newBookForm" onsubmit="onAddBook(event)">
@@ -64,6 +66,13 @@
     <dialog class="success-dialog">
         <p class="success-message"></p>
     </dialog>
+
+    <footer class="books-footer">
+        <h5>Book count by price</h5>
+            <h6>Expensive: <span class="expensive-books"></span></h6>
+            <h6>Average: <span class="average-books"></span></h6>
+            <h6>Cheap: <span class="cheap-books"></span></h6>
+    </footer>
 
     <script src="js/services/util.service.js"></script>
     <script src="js/services/storage.service.js"></script>
