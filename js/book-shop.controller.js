@@ -1,6 +1,8 @@
 'use strict'
 
 var gFilterBy = ''
+var gCurrentPage = 0
+var gPageSize = 5
 
 function onInit() {
     gFilterBy = ''
@@ -11,9 +13,14 @@ function renderBooks(searchTerm = '') {
     const elBooks = document.querySelector('.book-list')
     const books = getBooks(searchTerm)
 
-    const strHtmls = books.map(book => `<tr>
+    const startIdx = gCurrentPage * gPageSize
+    const endIdx = startIdx + gPageSize
+    const booksToShow = books.slice(startIdx, endIdx)
+
+    const strHtmls = booksToShow.map(book => `<tr>
     <td>${book.title}</td>
     <td>$${book.price}</td>
+    <td>${renderStars(book.rating)}</td>
     <td>
         <button class="read" onclick="onReadBook('${book.id}')">Read</button>
         <button class="update" onclick="onUpdateBook('${book.id}')">Update</button>
@@ -23,6 +30,37 @@ function renderBooks(searchTerm = '') {
     elBooks.innerHTML = strHtmls.join('')
 
     updateFooterStatistics(books)
+
+    document.querySelector('.pagination button:first-child').disabled = gCurrentPage === 0    
+    document.querySelector('.pagination button:last-child').disabled = endIdx >= books.length    
+}
+
+function onPrevPage(){
+    if (gCurrentPage > 0){
+        gCurrentPage--
+        renderBooks()
+    }
+}
+
+function onNextPage(){
+    const books= getBooks()
+    const totalPages = Math.ceil(books.length / gPageSize)
+    if(gCurrentPage < totalPages - 1){
+        gCurrentPage++
+        renderBooks()
+    }
+    const nextButton = document.querySelector('.pagination button:last-child')
+    nextButton.disabled = gCurrentPage === totalPages - 1
+}
+
+function renderStars(rating) {
+    const maxRating = 5
+    const validRating = Math.min(maxRating, Math.max(0, rating))
+
+    const fullStars = '<span class="star">&#9733;</span>'.repeat(validRating)
+    const emptyStars = '<span class="star">&#9734;</span>'.repeat(maxRating - validRating)
+
+    return fullStars + emptyStars
 }
 
 function updateFooterStatistics(books) {
@@ -51,6 +89,7 @@ function onReadBook(bookId) {
 
     const bookDetailsHTML = `
         <p style="font-family: Arial;"><strong>Price:</strong> ${book.price}</p>
+        <p>Rating:${book.rating}<span>&#9733;</span></p>
         <img src="${book.imgUrl}">
         `
     elTxt.innerHTML = book.title
@@ -65,20 +104,23 @@ function onAddBook(ev) {
 
     const titleInput = document.getElementById('newBookTitle')
     const priceInput = document.getElementById('newBookPrice')
+    const ratingInput = document.getElementById('newRating')
 
     const title = titleInput.value
     const price = +priceInput.value
+    const rating = ratingInput.value
 
-    console.log(price, title);
+    // console.log(price, title)
 
-    if (title && price) {
-        addBook(title, price)
+    if (title && price && rating) {
+        addBook(title, price, rating)
     }
     
     // send to service for save
 
     titleInput.value = ''
     priceInput.value = ''
+    ratingInput.value = ''
 
     document.querySelector('.add-book-dialog').close()
 

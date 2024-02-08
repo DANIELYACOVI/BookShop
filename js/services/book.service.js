@@ -19,6 +19,7 @@ function readBook(bookId) {
 }
 
 function updatePrice(bookId, newPrice) {
+    if(!price) return
     const book = gBooks.find(book => book.id === bookId)
     if (book) {
         book.price = newPrice
@@ -33,8 +34,8 @@ function removeBook(bookId) {
     _saveBooks()
 }
 
-function addBook(title, price){
-    const book = _createBook(title, price)
+function addBook(title, price, rating){
+    const book = _createBook(title, price, rating)
     gBooks.unshift(book)
     _saveBooks()
     // save 
@@ -46,22 +47,22 @@ function _createBooks() {
     gBooks = loadFromStorage('bookDB')
     if (!gBooks || gBooks.length === 0){
         gBooks = [
-            _createBook('האלכימאי', 100, 'image/alchemist_master.jpg'),
-            _createBook('הנזיר שמכר את הפרארי שלו', 200, 'image/images.jpeg'),
-            _createBook('Zorba the Greek', 300),
+            _createBook('האלכימאי', 100, 5, 'image/alchemist_master.jpg'),
+            _createBook('הנזיר שמכר את הפרארי שלו', 200, 4, 'image/images.jpeg'),
+            _createBook('Zorba the Greek',300 ,3),
         ]
         _saveBooks()
     }
 }
 
-function _createBook(title, price, imgUrl = 'image/imagescopy.jpg', description) {
+function _createBook(title, price, rating, imgUrl = 'image/imagescopy.jpg', description) {
     return {
         id: makeId(),
         title,
         price,
+        rating,
         imgUrl,
         description,
-        // status: 'Active'
     }
 }
 
